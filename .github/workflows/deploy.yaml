@@ -1,0 +1,17 @@
+name: deploy
+  on: push
+  jobs:
+    deploy:
+      name: deploy to cluster
+      runs-on: ubunut-latest
+      steps:
+        - uses: actions/checkout@master
+        - name: build and push to docker
+          uses: docker/build-push-action@v1
+          whit:
+            username: ${{ secret.DOCKER_USERNAME }}
+            password: ${{ secret.DOCKER_PASSWORD }}
+            repository: ${{ github.repository }}
+            tag_with_ref: true
+            tag_with_sha: true
+            tags: ${{ github.sha }}
