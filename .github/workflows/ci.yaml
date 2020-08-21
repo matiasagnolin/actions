@@ -12,3 +12,7 @@ jobs:
       - name: compile
         working-directory: ./
         run: mvn compile
+
+      - name: tests
+          working-directory: ./
+          run: mvn test
