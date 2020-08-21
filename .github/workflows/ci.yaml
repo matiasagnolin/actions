@@ -1,6 +1,6 @@
 name: workflow
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -8,3 +8,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+
+      - name: hello
+        run: echo "hello  from ${{ github.workflow }} triggered by ${{ github.event_name }}
