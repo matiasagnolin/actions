@@ -9,9 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: hello
-        run: echo "hello  from ${{ github.workflow }} triggered by ${{ github.event_name }}
-
       - name: compile
         working-directory: ./
         run: mvn compile
