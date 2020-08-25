@@ -21,21 +21,21 @@ jobs:
         run: mvn compile
 
       - name: Tests
-          working-directory: ./
-          run: mvn test
+        working-directory: ./
+        run: mvn test
 
       - name: Docker login
-          run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build docker Image
-          run: docker build -t data-service-backend .
+        run: docker build -t data-service-backend .
 
       - name: Tags
-          run: |
-            docker tag data-service-backend ${{ secrets.DOCKER_USER }}/back:${{ github.sha }}
-            docker tag data-service-backend ${{ secrets.DOCKER_USER }}/back:latest
+        run: |
+          docker tag data-service-backend ${{ secrets.DOCKER_USER }}/back:${{ github.sha }}
+          docker tag data-service-backend ${{ secrets.DOCKER_USER }}/back:latest
 
       - name: Push
-          run: |
-            docker push ${{ secrets.DOCKER_USER }}/back:${{ github.sha }}
-            docker push ${{ secrets.DOCKER_USER }}/back:latest
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/back:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/back:latest
